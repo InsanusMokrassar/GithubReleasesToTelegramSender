@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+    }
+}
+
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "$kotlin_version"
+    id "org.jetbrains.kotlin.plugin.serialization" version "$kotlin_version"
+    id 'application'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
+    maven { url "https://git.inmo.dev/api/packages/InsanusMokrassar/maven" }
+}
+
+project.version = null
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
+    api "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialisation_version"
+    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    api "dev.inmo:tgbotapi:$tgbotapi_version"
+    api "dev.inmo:micro_utils.repos.common:$microutils_version"
+    api "dev.inmo:micro_utils.repos.exposed:$microutils_version"
+    api "dev.inmo:micro_utils.repos.inmemory:$microutils_version"
+    api "dev.inmo:krontab:$krontab_version"
+    api "dev.inmo:kslog:$kslog_version"
+    api "org.jetbrains.exposed:exposed-jdbc:$kotlin_exposed_version"
+
+    api "org.xerial:sqlite-jdbc:$sqlite_version"
+
+    api "org.kohsuke:github-api:$github_api_version"
+}
+
+mainClassName = "dev.inmo.github.release.tgbotapi.sender.MainKt"
+
+apply from: "./extensions.gradle"
+// apply from: "./github_release.gradle"
