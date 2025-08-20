@@ -33,7 +33,7 @@ The application expects a JSON config file path as the only argument. You must p
   "targetChatId": 123456789,
   "debug": false,
   "databaseConfig": {
-    "url": "jdbc:sqlite:/data/published.db",
+    "url": "jdbc:sqlite:/bot/db.sqlite",
     "driver": "org.sqlite.JDBC",
     "username": "",
     "password": ""
