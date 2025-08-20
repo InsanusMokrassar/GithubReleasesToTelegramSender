@@ -33,7 +33,7 @@ The application expects a JSON config file path as the only argument. You must p
   "targetChatId": 123456789,
   "debug": false,
   "databaseConfig": {
-    "url": "jdbc:sqlite:/bot/db.sqlite",
+    "url": "jdbc:sqlite:/bot/db/db.sqlite",
     "driver": "org.sqlite.JDBC",
     "username": "",
     "password": ""
@@ -107,7 +107,8 @@ services:
     container_name: github_releases_tgbotapi_sender
     restart: always
     volumes:
-      - "${DATA_PATH}:/bot/"
+      - "${DATA_PATH}/config.json:/bot/config.json:ro"
+      - "${DATA_PATH}/db/:/bot/db/"
 ```
 
 Here `${DATA_PATH}` is environment variable with path to folder with data. Put in this folder file `config.json` with your config. It will be used by bot as user with `1000:1000` ids.
